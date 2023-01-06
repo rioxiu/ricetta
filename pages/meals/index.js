@@ -1,14 +1,115 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
-import React from "react";
+import axios from "axios";
+import React, { use, useEffect, useState } from "react";
+import Categories from "../../components/categories/categories";
 import SearchBar from "../../components/mealspage/searchbar";
+import BeatLoader from "react-spinners/BeatLoader";
+import CardMeals from "../../components/mealspage/cardmeals";
 
-const getCategories = async () => {};
+const override = {
+  display: "block",
+  margin: "0 auto",
+};
+const getCategories = async () => {
+  const { data } = await axios.get("/categories.php");
+  return data.categories;
+};
 
+const getMeals = async ({ queryKey }) => {
+  const { data } = await axios.get(`/filter.php?c=${queryKey[1]}`);
+  return data?.meals || [];
+};
+
+const getQueriedMeals = async ({ queryKey }) => {
+  const { data } = await axios.get(`/search.php?s=${queryKey[1]}`);
+  return data?.meals || [];
+};
 const Main = () => {
-  const result = useQuery(["categories"], getCategories);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [query, setQuery] = useState("");
+
+  const {
+    data: categories,
+    isLoading: categoriesIsLoading,
+    isError: categoriesIsError,
+  } = useQuery(["categories"], getCategories);
+
+  const { data, isLoading, isError } = useQuery(
+    ["mealsByCategory", selectedCategory],
+    getMeals,
+    {
+      enabled: query === "",
+    }
+  );
+
+  const {
+    data: queridData,
+    isLoading: queryIsLoading,
+    isError: queryError,
+  } = useQuery(["mealsByQuery", query], getQueriedMeals, {
+    enabled: query !== "",
+  });
+
+  useEffect(() => {
+    if (categories) {
+      setSelectedCategory(categories[0].strCategory);
+    }
+  }, [categories]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (searchText) {
+        setQuery(searchText);
+        setSelectedCategory("");
+      } else {
+        setQuery("");
+        if (categories) {
+          setSelectedCategory(categories[0].strCategory);
+        }
+      }
+    }, 300);
+    return () => {
+      setQuery("");
+      clearTimeout(timeout);
+    };
+  }, [searchText, categories]);
   return (
-    <div>
-      <SearchBar />
+    <div className="flex flex-col">
+      <SearchBar searchText={searchText} setSearchText={setSearchText} />
+      <Categories
+        categories={categories}
+        categoriesIsError={categoriesIsError}
+        categoriesIsLoading={categoriesIsLoading}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+        setQuery={setQuery}
+      />
+      {isLoading || categoriesIsLoading ? (
+        <>
+          <div>
+            <BeatLoader
+              loading={isLoading || categoriesIsLoading}
+              cssOverride={override}
+              size={20}
+            />
+          </div>
+        </>
+      ) : null}
+      <div>
+        <div className="m-10 grid-cols-5 items-center  grid gap-5">
+          {!isLoading &&
+            !isError &&
+            data &&
+            data.map((meal) => <CardMeals meal={meal} key={meal.idMeal} />)}
+          {!queryIsLoading &&
+            !queryError &&
+            queridData &&
+            queridData.map((meal) => (
+              <CardMeals meal={meal} key={meal.idMeal} />
+            ))}
+        </div>
+      </div>
     </div>
   );
 };
