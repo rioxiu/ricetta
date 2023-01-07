@@ -5,11 +5,11 @@ const About = () => {
     <>
       <div className="flex flex-col gap-4 mx-32 my-32 w-2/3 p-5 justify-end">
         <h1 className="text-xl ">Apa itu Ricetta</h1>
-        <p className="font-nunito">
-          Ricetta adalah istilah Italia yang merujuk pada resep masakan. Istilah
-          ini juga dapat digunakan untuk merujuk pada resep obat atau resep
-          lainnya. Ricetta berasal dari kata Latin "recipere", yang berarti
-          "menerima" atau "mengambil".
+        <p className="font-nunito text-lg">
+          "Ricetta" is an Italian term that refers to a recipe for cooking. The
+          term can also be used to refer to a prescription for medicine or other
+          recipe. Ricetta derives from the Latin word "recipere," which means
+          "to receive" or "to take".
         </p>
       </div>
     </>

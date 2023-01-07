@@ -9,8 +9,8 @@ const Navbar = () => {
       <Link className="text-2xl" href={"/"}></Link>
       <ul className="gap-10 flex flex-row mx-4">
         <Link href={"/meals"}>Meals</Link>
+        <Link href={"/"}>Save Meals</Link>
         <Link href={"/aboutus"}>About Us</Link>
-        <Link href={"/"}>Meals</Link>
       </ul>
     </nav>
   );

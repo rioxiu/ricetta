@@ -87,7 +87,7 @@ const Main = () => {
       />
       {isLoading || categoriesIsLoading ? (
         <>
-          <div>
+          <div className="py-5">
             <BeatLoader
               loading={isLoading || categoriesIsLoading}
               cssOverride={override}

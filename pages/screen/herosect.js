@@ -13,8 +13,10 @@ export const HeroSect = () => {
               <span className="font-extrabold text-cyan-600"> recipe</span>{" "}
               <br /> of the food you want to know.
             </h1>
-
-            <ButtonLink link={"/main"}>Meals</ButtonLink>
+            <div className="flex flex-row gap-2">
+              <ButtonLink link={"/meals"}>Meals</ButtonLink>
+              <ButtonLink link={"/meals"}>Save Meals</ButtonLink>
+            </div>
           </div>
           <div className="items-center p-5 flex justify-center">
             <Image
