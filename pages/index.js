@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
-import { HeroSect } from "./screen/herosect";
+import HeroSect from "./screen/herosect";
 import About from "./screen/about";
-import icon from "../public/Ricetta-1.svg";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
