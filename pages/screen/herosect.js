@@ -15,7 +15,7 @@ export const HeroSect = () => {
             </h1>
             <div className="flex flex-row gap-2">
               <ButtonLink link={"/meals"}>Meals</ButtonLink>
-              <ButtonLink link={"/meals"}>Save Meals</ButtonLink>
+              <ButtonLink link={"/save"}>Save Meals</ButtonLink>
             </div>
           </div>
           <div className="items-center p-5 flex justify-center">
