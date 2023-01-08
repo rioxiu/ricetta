@@ -5,18 +5,20 @@ const Ingredients = ({ Ingmeasures }) => {
     <div className="flex flex-col gap-5">
       <h1 className="text-3xl font-bold text-gray-800">Ingredients</h1>
       <table className="bg-slate-900 rounded w-full max-w-xl border-spacing-0 text-center">
-        <tbody>
-          {Ingmeasures.map((ms) => (
-            <tr key={ms.index} className="border-b-2">
-              <td className="p-2">
-                <p>{ms.ingredient}</p>
-              </td>
-              <td className="p-2">
-                <p>{ms.measure}</p>
-              </td>
-            </tr>
+        <>
+          {Ingmeasures.map((ms, index) => (
+            <tbody key={index} className="">
+              <tr key={ms.i} className="border-b-2 flex justify-between ">
+                <td className="p-2 mx-10 ">
+                  <p className="items-start">{ms.ingredient}</p>
+                </td>
+                <td className="p-2 mx-10 items-start">
+                  <p className="items-start">{ms.measure}</p>
+                </td>
+              </tr>
+            </tbody>
           ))}
-        </tbody>
+        </>
       </table>
     </div>
   );
