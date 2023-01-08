@@ -14,4 +14,17 @@ const ButtonLink = ({ link = "/", children }) => {
   );
 };
 
+const Button = ({ children, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="rounded-xl text-lg text-black p-1 justify-center w-1/4 flex flex-row items-center gap-2 text-center bg-teal-700"
+    >
+      {children}
+    </button>
+  );
+};
+
+export { Button };
+
 export default ButtonLink;

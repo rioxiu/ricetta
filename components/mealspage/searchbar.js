@@ -16,9 +16,6 @@ const SearchBar = ({ searchText, setSearchText }) => {
               setSearchText(e.target.value);
             }}
           />
-          <button className="p-2 rounded-xl bg-teal-600">
-            <CiSearch />
-          </button>
         </form>
       </div>
     </>

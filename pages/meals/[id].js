@@ -1,11 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
 import Ingredients from "./ingredients";
 import Link from "next/link";
-const getSingleMeal = async ({ queryKey }) => {
+import { toast } from "react-hot-toast";
+import { Button } from "../../components/button/buttonLink";
+import { FaHeartBroken, FaHeart } from "react-icons/fa";
+
+export const getSingleMeal = async ({ queryKey }) => {
   const { data } = await axios.get(`/lookup.php?i=${queryKey[1]}`);
   return data?.meals[0];
 };
@@ -14,10 +18,24 @@ const MealPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
+  const [isSaved, setIsSaved] = React.useState(false);
   const { data, isLoading, isError, error } = useQuery(
     ["singleMeal", id],
     getSingleMeal
   );
+
+  useEffect(() => {
+    if (localStorage.getItem("savedMeals")) {
+      const savedMeals = JSON.parse(localStorage.getItem("savedMeals"));
+      if (savedMeals.includes(id)) {
+        setIsSaved(true);
+      } else {
+        setIsSaved(false);
+      }
+    } else {
+      localStorage.setItem("savedMeals", JSON.stringify([]));
+    }
+  }, [id]);
 
   const loaderImg = ({ src }) => {
     return data.strMealThumb;
@@ -43,13 +61,26 @@ const MealPage = () => {
     .filter((key) => key.startsWith("strIngredient"))
     .filter((key) => data[key] !== "" && data[key] !== null);
 
-  console.log(ingredients);
-
   const Ingmeasures = ingredients.map((key, i) => ({
     i: i + 1,
     ingredient: data[key],
     measure: data[`strMeasure${i + 1}`],
   }));
+
+  const handleSaveButton = async () => {
+    const savedMeals = JSON.parse(localStorage.getItem("savedMeals"));
+    if (!isSaved) {
+      savedMeals.push(data.idMeal);
+      localStorage.setItem("savedMeals", JSON.stringify(savedMeals));
+      toast.success("Meal saved successfully");
+      setIsSaved(true);
+    } else {
+      savedMeals.splice(savedMeals.indexOf(data.idMeal), 1);
+      localStorage.setItem("savedMeals", JSON.stringify(savedMeals));
+      setIsSaved(false);
+      toast.error("Meal Removed successfully");
+    }
+  };
 
   const urlYoutube = data.strYoutube.replace("watch?v=", "embed/");
   const urlSource = data.strSource;
@@ -85,6 +116,36 @@ const MealPage = () => {
                 Click This!!
               </Link>
             </p>
+
+            <>
+              {isSaved && (
+                <>
+                  <p className="font-bold text-cyan-600">
+                    You already saved meals!
+                  </p>
+                </>
+              )}
+              {!isSaved && (
+                <>
+                  <p className="font-bold text-cyan-600">
+                    You not already saved meals!
+                  </p>
+                </>
+              )}
+            </>
+            <>
+              <Button onClick={handleSaveButton}>
+                {isSaved ? (
+                  <>
+                    <FaHeartBroken /> Remove
+                  </>
+                ) : (
+                  <>
+                    <FaHeart /> save
+                  </>
+                )}
+              </Button>
+            </>
 
             <div className="rounded-lg w-1/3">
               <embed

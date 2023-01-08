@@ -4,13 +4,20 @@ import logo from "../../public/Ricetta-2.png";
 import Image from "next/image";
 const Navbar = () => {
   return (
-    <nav className="flex flex-row items-center p-2 bg-slate-800 justify-between">
-      <Image src={logo} className="w-1/12 ml-5" />
-      <Link className="text-2xl" href={"/"}></Link>
+    <nav className="flex flex-row items-center text-center  z-10 bg-slate-800 justify-between">
+      <Link className="text-2xl" href={"/"}>
+        <Image src={logo} className="ml-5" width={90} height={90} />
+      </Link>
       <ul className="gap-10 flex flex-row mx-4">
-        <Link href={"/meals"}>Meals</Link>
-        <Link href={"/"}>Save Meals</Link>
-        <Link href={"/aboutus"}>About Us</Link>
+        <Link className="hover:font-bold" href={"/meals"}>
+          Meals
+        </Link>
+        <Link className="hover:font-bold" href={"/saved"}>
+          Save Meals
+        </Link>
+        <Link href={"/aboutus"} className="hover:font-bold">
+          About Us
+        </Link>
       </ul>
     </nav>
   );
