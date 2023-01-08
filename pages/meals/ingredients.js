@@ -6,8 +6,8 @@ const Ingredients = ({ Ingmeasures }) => {
       <h1 className="text-3xl font-bold text-gray-800">Ingredients</h1>
       <table className="bg-slate-900 rounded w-full max-w-xl border-spacing-0 text-center">
         <>
-          {Ingmeasures.map((ms, index) => (
-            <tbody key={index} className="">
+          {Ingmeasures.map((ms) => (
+            <tbody className="">
               <tr key={ms.i} className="border-b-2 flex justify-between ">
                 <td className="p-2 mx-10 ">
                   <p className="items-start">{ms.ingredient}</p>
