@@ -8,6 +8,7 @@ import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { Button } from "../../components/button/buttonLink";
 import { FaHeartBroken, FaHeart } from "react-icons/fa";
+import Image from "next/image";
 
 export const getSingleMeal = async ({ queryKey }) => {
   const { data } = await axios.get(`/lookup.php?i=${queryKey[1]}`);
@@ -158,7 +159,7 @@ const MealPage = () => {
             </div>
           </div>
           <div className=" p-2 rounded-xl items-center ml-32 text-center ">
-            <img
+            <Image
               className="rounded-lg"
               loader={loaderImg}
               src={data.strMealThumb}
