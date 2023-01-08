@@ -15,8 +15,7 @@ const queryClient = new QueryClient({
   },
 });
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASEURL;
-// axios.defaults.baseURL = "https://www.themealdb.com/api/json/v1/1";
+axios.defaults.baseURL = "https://www.themealdb.com/api/json/v1/1";
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
