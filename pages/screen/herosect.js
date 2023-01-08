@@ -2,7 +2,7 @@ import React from "react";
 import foodImg from "../../public/food-home.jpg";
 import Image from "next/image";
 import ButtonLink from "../../components/button/buttonLink";
-export const HeroSect = () => {
+const HeroSect = () => {
   return (
     <section className="items-center mt-10">
       <>
@@ -32,3 +32,5 @@ export const HeroSect = () => {
     </section>
   );
 };
+
+export default HeroSect;
