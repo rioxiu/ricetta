@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="flex flex-row items-center text-center  z-10 bg-slate-800 justify-between">
       <Link className="text-2xl" href={"/"}>
-        <Image src={logo} className="ml-5" width={90} height={90} />
+        <Image src={logo} className="ml-5" width={90} height={90} alt="some" />
       </Link>
       <ul className="gap-10 flex flex-row mx-4">
         <Link className="hover:font-bold" href={"/meals"}>

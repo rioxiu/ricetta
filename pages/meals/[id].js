@@ -160,11 +160,13 @@ const MealPage = () => {
           </div>
           <div className=" p-2 rounded-xl items-center ml-32 text-center ">
             <Image
+              alt="some"
               className="rounded-lg"
-              loader={loaderImg}
+              loader={() => data.strMealThumb}
+              unoptimized={true}
               src={data.strMealThumb}
-              height={"520"}
-              width={"520"}
+              height={520}
+              width={520}
             />
           </div>
         </div>
@@ -177,10 +179,10 @@ const MealPage = () => {
           {data.strInstructions
             .split(".")
             .filter((sentence) => sentence !== "")
-            .map((sentence) => (
-              <>
+            .map((sentence, i) => (
+              <div key={i}>
                 <p className="text-xl font-semibold">📎 {sentence}.</p>
-              </>
+              </div>
             ))}
         </div>
       </div>

@@ -40,7 +40,10 @@ const Saved = () => {
             }
 
             return (
-              <div className="bg-slate-800 p-2 rounded-lg">
+              <div
+                className="bg-slate-800 p-2 rounded-lg"
+                key={savedMealsId[[index]]}
+              >
                 <Link
                   legacyBehavior
                   href={`/meals/${data.idMeal}`}

@@ -16,10 +16,12 @@ const CardMeals = ({ meal }) => {
         <div className="h-72 w-72 rounded-xl bg-slate-900 items-center text-center flex flex-col justify-center">
           <Image
             className="rounded-lg"
-            loader={loaderImg}
+            loader={() => meal.strMealThumb}
             src={meal.strMealThumb}
             height={"200"}
+            unoptimized={true}
             width={"200"}
+            alt="some"
           />
           <h2 className="text-md mt-5 font-nunito">{meal.strMeal}</h2>
         </div>
