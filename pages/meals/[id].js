@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import axios from "axios";
 import BeatLoader from "react-spinners/BeatLoader";
-import Ingredients from "./ingredients";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { Button } from "../../components/button/buttonLink";
 import { FaHeartBroken, FaHeart } from "react-icons/fa";
 import Image from "next/image";
+import Ingredients from "../../components/mealspage/ingredientsdetai";
 
 export const getSingleMeal = async ({ queryKey }) => {
   const { data } = await axios.get(`/lookup.php?i=${queryKey[1]}`);
@@ -58,15 +58,15 @@ const MealPage = () => {
     );
   }
 
-  const ingredients = Object.keys(data)
-    .filter((key) => key.startsWith("strIngredient"))
-    .filter((key) => data[key] !== "" && data[key] !== null);
+  // const ingredients = Object.keys(data)
+  //   .filter((key) => key.startsWith("strIngredient"))
+  //   .filter((key) => data[key] !== "" && data[key] !== null);
 
-  const Ingmeasures = ingredients.map((key, i) => ({
-    i: i + 1,
-    ingredient: data[key],
-    measure: data[`strMeasure${i + 1}`],
-  }));
+  // const ingredientsWithMeasures = ingredients.map((key, index) => ({
+  //   index: index + 1,
+  //   ingredient: data[key],
+  //   measure: data[`strMeasure${index + 1}`],
+  // }));
 
   const handleSaveButton = async () => {
     const savedMeals = JSON.parse(localStorage.getItem("savedMeals"));
@@ -170,12 +170,69 @@ const MealPage = () => {
             />
           </div>
         </div>
-
-        <div>
-          <Ingredients Ingmeasures={Ingmeasures} />
+        <div className="p-2 my-10 flex flex-col gap-5 ">
+          <h1 className="text-3xl font-bold text-slate-700">Ingredients</h1>
+          <>
+            <table className=" p-2">
+              <tbody className="p-5">
+                <tr className="flex flex-row justify-start ">
+                  <td className="mr-10">
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient1}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient2}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient3}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient4}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient5}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient6}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient7}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient8}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient9}
+                    </p>
+                    <p className="text-lg font-semibold">
+                      {data.strIngredient10}
+                    </p>
+                  </td>
+                  <td>
+                    <p className="text-lg font-semibold">{data.sMeasurent1}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure2}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure3}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure4}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure5}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure6}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure7}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure8}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure9}</p>
+                    <p className="text-lg font-semibold">{data.strMeasure10}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </>
         </div>
+        {/* <div>
+          <ingredientsWithMeasures
+            ingredientsWithMeasures={ingredientsWithMeasures}
+          />
+        </div> */}
+
         <div className="flex flex-col gap-5 ">
-          <h1 className="text-3xl font-bold text-slate-700">Introduction</h1>
+          <h1 className="text-3xl font-bold text-slate-700">Instruction</h1>
           {data.strInstructions
             .split(".")
             .filter((sentence) => sentence !== "")
