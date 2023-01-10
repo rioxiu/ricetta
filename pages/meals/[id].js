@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 import { Button } from "../../components/button/buttonLink";
 import { FaHeartBroken, FaHeart } from "react-icons/fa";
 import Image from "next/image";
-import Ingredients from "../../components/mealspage/ingredientsdetai";
+import Head from "next/head";
 
 export const getSingleMeal = async ({ queryKey }) => {
   const { data } = await axios.get(`/lookup.php?i=${queryKey[1]}`);
@@ -58,16 +58,6 @@ const MealPage = () => {
     );
   }
 
-  // const ingredients = Object.keys(data)
-  //   .filter((key) => key.startsWith("strIngredient"))
-  //   .filter((key) => data[key] !== "" && data[key] !== null);
-
-  // const ingredientsWithMeasures = ingredients.map((key, index) => ({
-  //   index: index + 1,
-  //   ingredient: data[key],
-  //   measure: data[`strMeasure${index + 1}`],
-  // }));
-
   const handleSaveButton = async () => {
     const savedMeals = JSON.parse(localStorage.getItem("savedMeals"));
     if (!isSaved) {
@@ -87,6 +77,9 @@ const MealPage = () => {
   const urlSource = data.strSource;
   return (
     <>
+      <Head>
+        <title>{data.strMeal} || Ricetta</title>
+      </Head>
       <div className="p-5 flex flex-col my-5 justify-start mx-24 gap-10">
         <div className="flex flex-row justify-center gap-12 ">
           <div className="flex flex-col gap-5 justify-start">

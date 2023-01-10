@@ -5,6 +5,7 @@ import Categories from "../../components/categories/categories";
 import SearchBar from "../../components/mealspage/searchbar";
 import BeatLoader from "react-spinners/BeatLoader";
 import CardMeals from "../../components/mealspage/cardmeals";
+import Head from "next/head";
 
 const override = {
   display: "block",
@@ -75,42 +76,47 @@ const Main = () => {
     };
   }, [searchText, categories]);
   return (
-    <div className="flex flex-col">
-      <SearchBar searchText={searchText} setSearchText={setSearchText} />
-      <Categories
-        categories={categories}
-        categoriesIsError={categoriesIsError}
-        categoriesIsLoading={categoriesIsLoading}
-        setSelectedCategory={setSelectedCategory}
-        selectedCategory={selectedCategory}
-        setQuery={setQuery}
-      />
-      {isLoading || categoriesIsLoading ? (
-        <>
-          <div className="py-5">
-            <BeatLoader
-              loading={isLoading || categoriesIsLoading}
-              cssOverride={override}
-              size={20}
-            />
+    <>
+      <Head>
+        <title>Categories |Ricetta</title>
+      </Head>
+      <div className="flex flex-col">
+        <SearchBar searchText={searchText} setSearchText={setSearchText} />
+        <Categories
+          categories={categories}
+          categoriesIsError={categoriesIsError}
+          categoriesIsLoading={categoriesIsLoading}
+          setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
+          setQuery={setQuery}
+        />
+        {isLoading || categoriesIsLoading ? (
+          <>
+            <div className="py-5">
+              <BeatLoader
+                loading={isLoading || categoriesIsLoading}
+                cssOverride={override}
+                size={20}
+              />
+            </div>
+          </>
+        ) : null}
+        <div>
+          <div className="m-10 grid-cols-5 items-center  grid gap-5">
+            {!isLoading &&
+              !isError &&
+              data &&
+              data.map((meal) => <CardMeals meal={meal} key={meal.idMeal} />)}
+            {!queryIsLoading &&
+              !queryError &&
+              queridData &&
+              queridData.map((meal) => (
+                <CardMeals meal={meal} key={meal.idMeal} />
+              ))}
           </div>
-        </>
-      ) : null}
-      <div>
-        <div className="m-10 grid-cols-5 items-center  grid gap-5">
-          {!isLoading &&
-            !isError &&
-            data &&
-            data.map((meal) => <CardMeals meal={meal} key={meal.idMeal} />)}
-          {!queryIsLoading &&
-            !queryError &&
-            queridData &&
-            queridData.map((meal) => (
-              <CardMeals meal={meal} key={meal.idMeal} />
-            ))}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
