@@ -15,7 +15,11 @@ const Navbar = () => {
         <Link className="hover:font-bold" href={"/saved"}>
           Save Meals
         </Link>
-        <Link href={"/aboutus"} className="hover:font-bold">
+        <Link
+          href={"https://rioxiu.my.id"}
+          target="_blank"
+          className="hover:font-bold"
+        >
           About Us
         </Link>
       </ul>

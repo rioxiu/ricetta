@@ -80,36 +80,40 @@ const MealPage = () => {
       <Head>
         <title>{data.strMeal} || Ricetta</title>
       </Head>
-      <div className="flex flex-col justify-start gap-10 p-5 mx-24 my-5">
+      <div className="flex flex-col justify-start gap-10 p-5 mx-24 my-5 phone:mx-0">
         <div className="flex flex-row justify-center gap-12 phone:flex-col-reverse ">
           <div className="flex flex-col justify-start gap-5">
             <h1 className="mt-2 text-5xl font-extrabold phone:text-center font-nunito">
               {data.strMeal}
             </h1>
-            <p className="text-lg text-start">
-              📌 Category :{" "}
-              <span className="text-teal-600 text-md">{data.strCategory}</span>
-            </p>
-            <p className="text-lg">
-              🧷 Tags :{" "}
-              <span className="text-teal-600 text-md">
-                {data?.strTags?.split(",").join(", ")}
-              </span>{" "}
-            </p>
-            <p className="text-lg">
-              🗺 Country :{" "}
-              <span className="text-teal-600 text-md">{data.strArea}</span>
-            </p>
-            <p className="hover:font-bold">
-              🔗 Source Link :{" "}
-              <Link
-                className="text-teal-600 "
-                target={"_blank"}
-                href={urlSource}
-              >
-                Click This!!
-              </Link>
-            </p>
+            <div>
+              <p className="text-lg text-start">
+                📌 Category :{" "}
+                <span className="text-teal-600 text-md">
+                  {data.strCategory}
+                </span>
+              </p>
+              <p className="text-lg">
+                🧷 Tags :{" "}
+                <span className="text-teal-600 text-md">
+                  {data?.strTags?.split(",").join(", ")}
+                </span>{" "}
+              </p>
+              <p className="text-lg">
+                🗺 Country :{" "}
+                <span className="text-teal-600 text-md">{data.strArea}</span>
+              </p>
+              <p className="hover:font-bold">
+                🔗 Source Link :{" "}
+                <Link
+                  className="text-teal-600 "
+                  target={"_blank"}
+                  href={urlSource}
+                >
+                  Click This!!
+                </Link>
+              </p>
+            </div>
 
             <>
               {isSaved && (
@@ -141,7 +145,7 @@ const MealPage = () => {
               </Button>
             </>
 
-            <div className="w-1/3 rounded-lg">
+            <div className="w-1/3 rounded-lg phone:flex phone:justify-center phone:w-full">
               <embed
                 className="rounded-xl"
                 width="400"
