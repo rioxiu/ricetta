@@ -102,7 +102,7 @@ const Main = () => {
           </>
         ) : null}
         <div>
-          <div className="m-10 grid-cols-5 items-center  grid gap-5">
+          <div className="grid items-center grid-cols-5 gap-5 m-10 phone:grid-cols-2">
             {!isLoading &&
               !isError &&
               data &&

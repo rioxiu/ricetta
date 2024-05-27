@@ -8,9 +8,9 @@ const HeroSect = () => {
     <>
       <section className="items-center mt-10">
         <>
-          <div className="flex flex-row gap-10 justify-center">
-            <div className="flex flex-col mx-10 my-36 p-5 gap-10 ">
-              <h1 className="text-center text-4xl font-bold w-96">
+          <div className="flex flex-row justify-center gap-10 phone:flex-col-reverse">
+            <div className="flex flex-col gap-10 p-5 mx-10 my-36 phone:my-0 ">
+              <h1 className="text-4xl font-bold text-center w-96">
                 Search for the
                 <span className="font-extrabold text-cyan-600">
                   {" "}
@@ -18,12 +18,12 @@ const HeroSect = () => {
                 </span>{" "}
                 <br /> of the food you want to know.
               </h1>
-              <div className="flex flex-row gap-2">
+              <div className="flex flex-row gap-2 phone:items-center phone:justify-center">
                 <ButtonLink link={"/meals"}>Meals</ButtonLink>
                 <ButtonLink link={"/saved"}>Save Meals</ButtonLink>
               </div>
             </div>
-            <div className="items-center p-5 flex justify-center">
+            <div className="flex items-center justify-center p-5">
               <Image
                 src={foodImg}
                 width={300}

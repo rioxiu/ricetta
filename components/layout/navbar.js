@@ -4,11 +4,11 @@ import logo from "../../public/Ricetta-2.png";
 import Image from "next/image";
 const Navbar = () => {
   return (
-    <nav className="flex flex-row items-center text-center  z-10 bg-slate-800 justify-between">
+    <nav className="top-0 z-10 flex flex-row items-center justify-between w-full text-center border-b-slate-800 bg-slate-800">
       <Link className="text-2xl" href={"/"}>
         <Image src={logo} className="ml-5" width={90} height={90} alt="some" />
       </Link>
-      <ul className="gap-10 flex flex-row mx-4">
+      <ul className="flex flex-row gap-10 mx-4">
         <Link className="hover:font-bold" href={"/meals"}>
           Meals
         </Link>

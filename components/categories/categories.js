@@ -17,7 +17,7 @@ const Categories = ({
   }
   return (
     <>
-      <div className="px-2 items-center text-center mt-10 flex flex-row justify-center mb-10 gap-4  mx-80">
+      <div className="grid items-center justify-center grid-cols-7 gap-4 px-2 mx-8 mt-10 mb-10 text-center phone:grid-cols-4 ">
         {categories &&
           categories.map((item, i) => {
             return (

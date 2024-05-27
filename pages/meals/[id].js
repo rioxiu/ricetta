@@ -50,7 +50,7 @@ const MealPage = () => {
     return (
       <div className="">
         <BeatLoader
-          className="p-5 flex justify-center items-center"
+          className="flex items-center justify-center p-5"
           size={30}
           color="#fff"
         />
@@ -80,30 +80,30 @@ const MealPage = () => {
       <Head>
         <title>{data.strMeal} || Ricetta</title>
       </Head>
-      <div className="p-5 flex flex-col my-5 justify-start mx-24 gap-10">
-        <div className="flex flex-row justify-center gap-12 ">
-          <div className="flex flex-col gap-5 justify-start">
-            <h1 className="text-5xl font-extrabold mt-2 font-nunito">
+      <div className="flex flex-col justify-start gap-10 p-5 mx-24 my-5">
+        <div className="flex flex-row justify-center gap-12 phone:flex-col-reverse ">
+          <div className="flex flex-col justify-start gap-5">
+            <h1 className="mt-2 text-5xl font-extrabold phone:text-center font-nunito">
               {data.strMeal}
             </h1>
             <p className="text-lg text-start">
               📌 Category :{" "}
-              <span className=" text-md text-teal-600">{data.strCategory}</span>
+              <span className="text-teal-600 text-md">{data.strCategory}</span>
             </p>
             <p className="text-lg">
               🧷 Tags :{" "}
-              <span className="text-md text-teal-600">
+              <span className="text-teal-600 text-md">
                 {data?.strTags?.split(",").join(", ")}
               </span>{" "}
             </p>
             <p className="text-lg">
               🗺 Country :{" "}
-              <span className="text-md text-teal-600">{data.strArea}</span>
+              <span className="text-teal-600 text-md">{data.strArea}</span>
             </p>
             <p className="hover:font-bold">
               🔗 Source Link :{" "}
               <Link
-                className=" text-teal-600"
+                className="text-teal-600 "
                 target={"_blank"}
                 href={urlSource}
               >
@@ -141,7 +141,7 @@ const MealPage = () => {
               </Button>
             </>
 
-            <div className="rounded-lg w-1/3">
+            <div className="w-1/3 rounded-lg">
               <embed
                 className="rounded-xl"
                 width="400"
@@ -151,7 +151,7 @@ const MealPage = () => {
               />
             </div>
           </div>
-          <div className=" p-2 rounded-xl items-center ml-32 text-center ">
+          <div className="items-center p-2 ml-32 text-center phone:ml-0 rounded-xl">
             <Image
               alt="some"
               className="rounded-lg"
@@ -163,10 +163,10 @@ const MealPage = () => {
             />
           </div>
         </div>
-        <div className="p-2 my-10 flex flex-col gap-5 ">
+        <div className="flex flex-col gap-5 p-2 my-10 ">
           <h1 className="text-3xl font-bold text-slate-700">Ingredients</h1>
           <>
-            <table className=" p-2">
+            <table className="p-2 ">
               <tbody className="p-5">
                 <tr className="flex flex-row justify-start ">
                   <td className="mr-10">

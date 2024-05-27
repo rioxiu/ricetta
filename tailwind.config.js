@@ -9,6 +9,9 @@ module.exports = {
       fontFamily: {
         nunito: ["Nunito", "sans-serif"],
       },
+      screens: {
+        phone: { max: "784px" },
+      },
     },
   },
   plugins: [],

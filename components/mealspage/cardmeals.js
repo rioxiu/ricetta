@@ -9,11 +9,11 @@ const CardMeals = ({ meal }) => {
   return (
     <>
       <Link
-        className="items-center flex justify-center"
+        className="flex items-center justify-center"
         id="link"
         href={`/meals/${meal.idMeal}`}
       >
-        <div className="h-72 w-72 rounded-xl bg-slate-900 items-center text-center flex flex-col justify-center">
+        <div className="flex flex-col items-center justify-center text-center h-72 w-72 rounded-xl bg-slate-900">
           <Image
             className="rounded-lg"
             loader={() => meal.strMealThumb}
@@ -23,7 +23,7 @@ const CardMeals = ({ meal }) => {
             width={"200"}
             alt="some"
           />
-          <h2 className="text-md mt-5 font-nunito">{meal.strMeal}</h2>
+          <h2 className="mt-5 text-md font-nunito">{meal.strMeal}</h2>
         </div>
       </Link>
     </>
