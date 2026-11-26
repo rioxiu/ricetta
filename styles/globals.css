@@ -1,4 +1,140 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap");
+
+:root {
+  --bg-ground: #faf6ee;
+  --bg-surface: #ffffff;
+  --bg-elevated: #f1eadc;
+  --bg-header: rgba(250, 246, 238, 0.92);
+  --border: #dfd6c5;
+  --border-strong: #c4b8a2;
+  --text-primary: #211915;
+  --text-secondary: #574b42;
+  --text-muted: #6b5e54;
+  --olive: #3a5a40;
+  --olive-hover: #2d4732;
+  --olive-text-on: #ffffff;
+  --olive-subtle: #eaf1eb;
+  --ochre: #8a5a00;
+  --ochre-subtle: #f7eed9;
+}
+
+[data-theme="dark"] {
+  --bg-ground: #161412;
+  --bg-surface: #201d1a;
+  --bg-elevated: #2a2622;
+  --bg-header: rgba(22, 20, 18, 0.92);
+  --border: #36302a;
+  --border-strong: #4d453d;
+  --text-primary: #f5efe6;
+  --text-secondary: #bfb5a8;
+  --text-muted: #9e9487;
+  --olive: #86b88d;
+  --olive-hover: #9fc9a5;
+  --olive-text-on: #111a13;
+  --olive-subtle: #1d2b1f;
+  --ochre: #e6b85c;
+  --ochre-subtle: #2e2515;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-ground);
+    color: var(--text-primary);
+    font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-ground);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a[href],
+  button,
+  select,
+  label[for] {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--olive);
+    outline-offset: 2px;
+  }
+}
+
+.font-cookbook {
+  font-family: "Playfair Display", Georgia, Cambria, serif;
+}
+
+.font-measure {
+  font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.ricetta-header {
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.btn-olive {
+  background-color: var(--olive);
+  color: var(--olive-text-on);
+  border: 1px solid var(--olive);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-olive:hover {
+  background-color: var(--olive-hover);
+  border-color: var(--olive-hover);
+}
+
+.btn-parchment {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.btn-parchment:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--olive);
+}
+
+.meal-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border);
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.meal-card:hover {
+  border-color: var(--olive);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
